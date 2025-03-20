@@ -74,9 +74,9 @@ having
 insert into normalized_companies (name, canonical_website, address)
 with RankedCompanies as (
     select 
-        lower(name) as normalized_name,  -- Normalize the name to lowercase
-        website,  -- Select website
-        address,  -- Select address
+        lower(name) as normalized_name,
+        website,
+        address,
         case 
             when source = 'MANUAL' then 1
             when source = 'API_1' then 2
@@ -87,7 +87,7 @@ with RankedCompanies as (
                 when source = 'MANUAL' then 1
                 when source = 'API_1' then 2
                 when source = 'SCRAPER_2' then 3
-            end) as rn  -- This generates a row number for each 'normalized_name' based on source rank
+            end) as rn
     from companies
 )
 select 
